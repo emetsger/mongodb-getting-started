@@ -1,0 +1,18 @@
+version: "3.9"
+
+volumes:
+  mongodb:
+  mongoconfig:
+
+services:
+
+  # Standalone Mongo instance
+  mongodb:
+    container_name: mongodb
+    image: ghcr.io/emetsger/mongodb:5.0.3
+    command: --wiredTigerCacheSizeGB 0.25 --bind_ip 0.0.0.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb:/data/db
+      - mongoconfig:/data/configdb
